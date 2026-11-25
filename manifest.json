@@ -1,0 +1,38 @@
+/* ============================ FILE: manifest.json ========================= */
+{
+  "manifest_version": 3,
+  "name": "Virtual Background",
+  "version": "1.0.19",
+  "description": "Virtual Background fuer Webcam-Videostreams (@vpalmisano/virtual-background)",
+  "minimum_chrome_version": "111",
+  "host_permissions": ["<all_urls>"],
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["https://vpalmisano.github.io/virtual-background/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["https://vpalmisano.github.io/virtual-background/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "vendor/virtual-background.js",
+        "vendor/vision_wasm_internal.js",
+        "vendor/vision_wasm_internal.wasm",
+        "vendor/selfie_multiclass_256x256.tflite"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
