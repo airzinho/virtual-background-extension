@@ -74,9 +74,12 @@ Der Kern dieser Erweiterung ist die Arbeit anderer — erwähnt sei gebührlich:
   KI-Assistent von Proton: Diese Erweiterung wurde gemeinsam mit Lumo
   entwickelt — von der Analyse der Renderer-Pipeline über das Debugging der
   Options-Steuerung bis zu Panel, Presets und dieser Dokumentation.
-- Eigenanteil dieses Repos: der Chrome-Extension-Wrapper (manifest.json,
-  content.js, inject.js), die Benutzerführung (Panel, Presets) und die
-  Options-Integration, erstellt zusammen mit Lumo. Lizenz: MIT (siehe LICENSE).
+
+## Autor
+
+**airzinho** — [github.com/airzinho](https://github.com/airzinho)
+(Chrome-Extension-Wrapper, Panel, Presets, Options-Integration). Lizenz: MIT
+(siehe [LICENSE](LICENSE)). Bugs und Verbesserungsvorschläge gerne als Issue.
 
 ## Lizenzen
 
