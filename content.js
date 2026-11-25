@@ -1,11 +1,12 @@
 /* ==========================================================================
- F I*LE: content.js
- - Isolated World: Resource-URLs + Einstellungen als data-Attribut,
-UI-Panel (Shadow DOM), Persistenz in chrome.storage.local
-========================================================================== */
+ *   FILE: content.js
+ *   - Isolated World: Resource-URLs + Einstellungen als data-Attribut,
+ *     UI-Panel (Shadow DOM), Persistenz in chrome.storage.local
+ *   - NEU in v9: Leichtmodus-Checkbox im Panel.
+ *   ========================================================================== */
 (() => {
   const SETTINGS_KEY = 'vbSettings';
-  const DEFAULT_SETTINGS = { mode: 'blur', blur: 20, imageDataUrl: null };
+  const DEFAULT_SETTINGS = { mode: 'blur', blur: 20, imageDataUrl: null, lite: false };
 
   const BASE_URLS = {
     lib: chrome.runtime.getURL('vendor/virtual-background.js'),
@@ -83,6 +84,11 @@ UI-Panel (Shadow DOM), Persistenz in chrome.storage.local
       border: 1px solid #444; background: #2a2a33; color: #eee;
     }
     .panel input[type=range] { width: 100%; }
+    .lite-row {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; margin-top: 10px; cursor: pointer;
+    }
+    .lite-row input { accent-color: #6d4aff; }
     .swatches { display: flex; gap: 6px; margin-top: 6px; }
     .swatches button {
       width: 34px; height: 34px; border-radius: 6px;
@@ -111,7 +117,12 @@ UI-Panel (Shadow DOM), Persistenz in chrome.storage.local
     <label>Voreinstellungen</label>
     <div class="swatches" id="vb-swatches"></div>
     </div>
-    <div class="hint">Alle Änderungen greifen sofort, auch „Aus“.</div>
+    <label class="lite-row">
+    <input type="checkbox" id="vb-lite" />
+    Leichtmodus (640×360, 15 fps — für schwache Rechner)
+    </label>
+    <div class="hint">Blur/Bild/Aus greifen sofort. Der Leichtmodus wird
+    beim nächsten Kamerastart wirksam (Seite neu laden).</div>
     </div>
     `;
 
@@ -124,6 +135,7 @@ UI-Panel (Shadow DOM), Persistenz in chrome.storage.local
     const blurVal = shadow.querySelector('#vb-blur-val');
     const fileInput = shadow.querySelector('#vb-file');
     const swatchBox = shadow.querySelector('#vb-swatches');
+    const liteCheck = shadow.querySelector('#vb-lite');
 
     PRESETS.forEach((p) => {
       const b = document.createElement('button');
@@ -151,6 +163,7 @@ UI-Panel (Shadow DOM), Persistenz in chrome.storage.local
       blurVal.textContent = s.blur;
       blurRow.style.display = s.mode === 'blur' ? 'block' : 'none';
       imgRow.style.display = s.mode === 'image' ? 'block' : 'none';
+      liteCheck.checked = !!s.lite;
     };
 
     const update = (partial) => {
@@ -164,6 +177,9 @@ UI-Panel (Shadow DOM), Persistenz in chrome.storage.local
     modeSel.addEventListener('change', () => update({ mode: modeSel.value }));
     blurInput.addEventListener('input', () =>
     update({ blur: Number(blurInput.value) })
+    );
+    liteCheck.addEventListener('change', () =>
+    update({ lite: liteCheck.checked })
     );
     fileInput.addEventListener('change', () => {
       const file = fileInput.files && fileInput.files[0];

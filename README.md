@@ -23,6 +23,9 @@ eigenes Bild. Basierend auf der Bibliothek
 - **Eigenes Hintergrundbild** — Vier Farb-Verlauf-Presets (Studio Grau, Blau,
   Grün, Abendrot) oder eigener Upload (JPEG/PNG/WebP, ~max. 4 MB).
 - **Aus** — Originalstream unverändert durchlassen.
+- **Leichtmodus** — Für schwächere Rechner: kappt die Kamera weich auf
+  640×360 @ 15 fps und entlastet CPU/GPU deutlich. Als Checkbox im Panel,
+  wirkt beim nächsten Kamerastart (Seite neu laden).
 - Alle Einstellungen greifen live und werden in `chrome.storage.local`
   persistent gespeichert. Steuerung über das 🎬-Panel unten links.
 
@@ -78,8 +81,9 @@ Der Kern dieser Erweiterung ist die Arbeit anderer — erwähnt sei gebührlich:
 ## Autor
 
 **airzinho** — [github.com/airzinho](https://github.com/airzinho)
-(Chrome-Extension-Wrapper, Panel, Presets, Options-Integration). Lizenz: MIT
-(siehe [LICENSE](LICENSE)). Bugs und Verbesserungsvorschläge gerne als Issue.
+(Chrome-Extension-Wrapper, Panel, Presets, Options-Integration, Leichtmodus).
+Lizenz: MIT (siehe [LICENSE](LICENSE)). Bugs und Verbesserungsvorschläge
+gerne als Issue.
 
 ## Lizenzen
 
