@@ -10,11 +10,11 @@ eigenes Bild. Basierend auf der Bibliothek
 
 **Hintergrund weichzeichnen** (Slider-Wert 59):
 
-![Hintergrund weichzeichnen](screenshot-blur.png)
+![Hintergrund weichzeichnen](screenshot-blur.png?v=2)
 
 **Eigenes Hintergrundbild** (Preset „Grün"):
 
-![Eigenes Hintergrundbild — Preset Grün](screenshot-image.png)
+![Eigenes Hintergrundbild — Preset Grün](screenshot-image.png?v=2)
 
 ## Funktionen
 
